@@ -1,165 +1,186 @@
-FeedHope Admin Panel
-This project serves as an administrative panel for the FeedHope application, built with Node.js, Express.js, and MongoDB, leveraging the powerful AdminJS framework. It provides a user-friendly interface for managing various data models related to the FeedHope platform, including users, donations, requests, campaigns, and more.
+# FeedHope Admin Panel
 
-✨ Features
-AdminJS Integration: A robust and customizable admin interface.
+This project serves as an administrative panel for the FeedHope application, built with **Node.js**, **Express.js**, and **MongoDB**, leveraging the powerful **AdminJS** framework. It provides a user-friendly interface for managing various data models related to the FeedHope platform, including users, donations, requests, campaigns, and more.
 
-MongoDB & Mongoose: Seamless integration with MongoDB using Mongoose for ODM.
+---
 
-Secure Authentication: Admin login with bcrypt hashed passwords stored in environment variables.
+## ✨ Features
 
-Persistent Sessions: User sessions are securely stored in MongoDB using connect-mongo to prevent data loss on server restarts.
+- **AdminJS Integration**: A robust and customizable admin interface.
+- **MongoDB & Mongoose**: Seamless integration with MongoDB using Mongoose for ODM.
+- **Secure Authentication**: Admin login with bcrypt hashed passwords stored in environment variables.
+- **Persistent Sessions**: User sessions are securely stored in MongoDB using `connect-mongo` to prevent data loss on server restarts.
+- **Custom Dashboard**: A personalized dashboard view for quick insights.
+- **Custom Pages**: Example of a custom "Reports" page for extended functionality.
+- **AdminJS Logger**: Tracks all create, edit, and delete operations on specified resources, providing an audit trail.
+- **Password Hashing Feature**: Automatically hashes user passwords when created or updated via the AdminJS panel using `@adminjs/passwords`.
+- **TypeScript Support**: Project is structured with TypeScript for type safety and better maintainability.
 
-Custom Dashboard: A personalized dashboard view for quick insights.
+---
 
-Custom Pages: Example of a custom "Reports" page for extended functionality.
+## 🚀 Technologies Used
 
-AdminJS Logger: Tracks all create, edit, and delete operations on specified resources, providing an audit trail.
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB
+- **ORM**: Mongoose
+- **Admin Panel Framework**: AdminJS
+- **Authentication**: bcrypt, express-session, connect-mongo
 
-Password Hashing Feature: Automatically hashes user passwords when created or updated via the AdminJS panel using @adminjs/passwords.
+---
 
-TypeScript Support: Project is structured with TypeScript for type safety and better maintainability.
+## 📋 Prerequisites
 
-🚀 Technologies Used
-Backend: Node.js, Express.js
+Make sure you have the following installed:
 
-Database: MongoDB
+- **Node.js** (LTS version recommended, e.g., `v18.x` or `v20.x`)
+- **npm** (comes with Node.js)
+- **MongoDB Atlas Account** or local MongoDB instance (for connection URI)
 
-ORM: Mongoose
+---
 
-Admin Panel Framework: AdminJS
+## ⚙️ Setup Instructions
 
-Authentication: bcrypt (for password hashing), express-session, connect-mongo
+### 1. Clone the Repository
 
-📋 Prerequisites
-Before you begin, ensure you have the following installed on your system:
-
-Node.js: (LTS version recommended, e.g., v18.x or v20.x)
-
-npm: (Comes with Node.js)
-
-MongoDB Atlas Account: Or a local MongoDB instance. You'll need a MongoDB Connection String (URI).
-
-⚙️ Setup Instructions
-Follow these steps to get the project up and running on your local machine.
-
-1. Clone the Repository
+```bash
 git clone <your-repository-url>
 cd feedhope
+```
 
-2. Install Dependencies
-Navigate into the project directory and install all required Node.js packages:
+### 2. Install Dependencies
 
+```bash
 npm install
+```
 
-3. Environment Variables Setup
-Create a .env file in the root of your project directory (feedhope/). This file will store your sensitive configuration details.
+### 3. Create .env File
 
+```bash
 touch .env
+```
 
-Open the .env file and add the following variables. Replace the placeholder values with your actual credentials.
 
-# MongoDB Connection String (from MongoDB Atlas or your local instance)
-DATABASE_URL="mongodb+srv://<your-username>:<your-password>@<your-cluster-url>/<your-database-name>?retryWrites=true&w=majority&appName=XXXXX"
+### 3. Environment Variables Setup
 
-# Secret key for signing session cookies. Generate a strong, random string.
-# Example: PzTSSq6VnPgEVT8bs2cWIID4At0YTXkP (use your own unique string)
+Create a `.env` file in the root of the project:
+
+```bash
+touch .env
+```
+
+Add the following variables (replace with your actual credentials):
+
+```env
+# MongoDB Connection String
+DATABASE_URL="mongodb+srv://<username>:<password>@<cluster>/<database>?retryWrites=true&w=majority&appName=XXXXX"
+
+# Session secret
 COOKIE_SECRET="YOUR_SUPER_SECRET_COOKIE_KEY"
 
-# Port for the AdminJS server to run on
+# AdminJS server port
 PORT=3000
 
-# Node.js environment mode (set to 'production' for deployment)
+# Environment
 NODE_ENV=development
 
-# Admin User Credentials for AdminJS Login
-# ADMIN_EMAIL should be your personal email
+# Admin Credentials
 ADMIN_EMAIL="your.personal@email.com"
-# ADMIN_PASSWORD_HASH should be a bcrypt hash of your desired password.
-# NEVER put your plaintext password here.
-# Generate a hash using Node.js REPL:
-# node
-# > const bcrypt = require('bcrypt');
-# > bcrypt.hash('your_secure_password', 10).then(hash => console.log(hash));
-# Copy the output hash here:
 ADMIN_PASSWORD_HASH="$2a$10$XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+```
 
-4. Build the Project 
+To generate `ADMIN_PASSWORD_HASH` in Node.js REPL:
+
+```js
+const bcrypt = require('bcrypt');
+bcrypt.hash('your_secure_password', 10).then(hash => console.log(hash));
+```
+
+### 4. Build and Start the Project
+
+```bash
 nodemon app.js
+```
 
-🚀 Running the Project
-You have two main ways to run the project: for development (with hot-reloading) or for production.
+---
 
-Development Mode (with Hot-Reloading)
-For development, it's recommended to use ts-node-dev for automatic restarts on code changes.
+## 🚀 Running the Project
 
-Start the AdminJS server.
+**Development Mode (with Hot-Reloading)**  
+Use `ts-node-dev` for automatic reloads during development.
 
-🌐 Accessing the Admin Panel
-Once the server is running (either in development or production mode), open your web browser and navigate to:
+---
 
+## 🌐 Accessing the Admin Panel
+
+Navigate to:
+
+```bash
 http://localhost:3001/admin
+```
 
-(The port might differ if you changed the PORT variable in your .env file).
+*(Port may vary based on your `.env` configuration)*
 
-🔑 Admin Credentials
-Use the credentials you configured in your .env file:
+---
 
-Email: The ADMIN_EMAIL you set (e.g., your.personal@email.com)
+## 🔑 Admin Credentials
 
-Password: The plaintext password that corresponds to the ADMIN_PASSWORD_HASH you generated.
+- **Email**: `ADMIN_EMAIL` from `.env`
+- **Password**: Plaintext password used to generate the hash
 
-📁 Project Structure
+---
+
+## 📁 Project Structure
+
+```bash
 feedhope/
 ├── dist/                        
-│   ├── admin/                    # AdminJS specific configurations
+│   ├── admin/                    
 │   │   ├── components/           # Custom React components (e.g., Dashboard, Custom Pages)
 │   │   │   ├── MyCustomDashboard.tsx
-│   │   ├── models/               # Mongoose model definitions (TypeScript)
-│   │   │   ├── campaign.jsts
-│   │   │   ├── common.js         # Shared schemas (image, quantity, geo, address)
-│   │   │   ├── log.js            # Model for AdminJS Logger
-│   │   │   └── user.js           # User model
-│   │   ├── auth-provider.js      # AdminJS custom authentication logic
-│   │   ├── component-loader.js   # Registers custom React components for AdminJS
-│   │   └── options.js            # Main AdminJS configuration (resources, features, pages)
-│   ├── db/                       # Database connection setup
-│   │   └── index.js              # Mongoose connection initialization
-│   └── app.js                    # Main Express.js application entry point
-├── node_modules/                 # Installed Node.js packages
-├── .env                          # Environment variables
-├── .gitignore                    # Specifies intentionally untracked files to ignore
-├── package.json                  # Project metadata and dependencies
-└── README.md                     # This file
+│   │   ├── models/               # Mongoose model definitions
+│   │   │   ├── campaign.js
+│   │   │   ├── common.js         # Shared schemas
+│   │   │   ├── log.js            # AdminJS Logger model
+│   │   │   └── user.js
+│   │   ├── auth-provider.js      # Custom authentication logic
+│   │   ├── component-loader.js   # Registers custom components
+│   │   └── options.js            # AdminJS config
+│   ├── db/                       
+│   │   └── index.js              # MongoDB connection
+│   └── app.js                    # Main Express app
+├── node_modules/                 
+├── .env                          
+├── .gitignore                    
+├── package.json                  
+└── README.md                    
+```
 
-🛠️ Customization
-This Admin Panel is highly customizable. Here are some key areas:
+---
 
-src/admin/options.ts: This is your central configuration file for AdminJS. You can:
+## 🛠️ Customization
 
-Add/remove resources (your Mongoose models).
+Modify `src/admin/options.ts` to:
 
-Configure resource properties (visibility, labels, types).
+- Add/remove resources (models)
+- Customize fields and visibility
+- Add custom actions, buttons, or hooks
+- Define custom dashboard or pages
 
-Add custom actions (buttons with backend logic).
+The `@adminjs/passwords` plugin is set for the User resource to auto-hash passwords.
 
-Add hooks (before, after) to intercept CRUD operations.
+---
 
-Define custom pages and dashboard components.
+## ⚠️ Troubleshooting
+- `ERR_UNKNOWN_FILE_EXTENSION` / `ERR_MODULE_NOT_FOUND`: Make sure `"type": "module"` is in your `package.json`.
 
-@adminjs/passwords: Configured for the User resource in src/admin/options.ts to handle password hashing automatically.
+---
 
-⚠️ Troubleshooting
-TypeError: router.use is not a function: Ensure you are passing express.Router() as the fourth argument to buildAuthenticatedRouter in src/app.ts.
+## 🤝 Contributing
 
-TypeError: Cannot read properties of undefined (reading 'add'): Verify that componentLoader is correctly passed to loggerFeature and createLoggerResource in src/admin/options.ts.
+Feel free to fork, improve, and submit a pull request.
 
-ERR_UNKNOWN_FILE_EXTENSION / ERR_MODULE_NOT_FOUND:
+---
 
-Ensure type: "module" is present in your package.json.
+## 📄 License
 
-🤝 Contributing
-Feel free to fork this repository, make improvements, and submit pull requests.
-
-📄 License
-This project is licensed under the MIT License - see the LICENSE file for details (if you have one, otherwise remove this section).
+Licensed under the MIT License. See the `LICENSE` file for details.
