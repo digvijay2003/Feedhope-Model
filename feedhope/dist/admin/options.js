@@ -11,7 +11,6 @@ import MoneyDonation from './models/money_donation.js';
 import Subscription from './models/subscription.js';
 import User from './models/user.js';
 import Volunteer from './models/volunteer.js';
-import { LogModel } from './models/log.js';
 
 const options = {
   componentLoader,
@@ -29,16 +28,6 @@ const options = {
     Volunteer,
   ],
   databases: [],
-  dashboard: {
-    component: 'MyCustomDashboard',
-  },
-  pages: {
-    custom: { 
-      label: 'Custom ', 
-      icon: 'Custom', 
-      component: 'MyCustomDashboard',
-    }
-  },
 };
 
 export default options;
